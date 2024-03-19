@@ -3,7 +3,7 @@ export namespace ShippingRelease {
     id: string;
     status: string;
     storeId: string;
-    items: any[];
+    items: {sku: string, qty: number}[];
   };
 
   export const create = (props: Type) => {

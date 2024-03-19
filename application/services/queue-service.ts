@@ -1,3 +1,6 @@
 export interface QueueService {
-  enqueue(queueName: string, jobData: unknown): null;
+  enqueue<T>(queueName: string, jobDefinition: {
+    name: string,
+    data: T
+  }): Promise<string>;
 }

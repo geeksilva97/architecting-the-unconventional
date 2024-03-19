@@ -1,10 +1,9 @@
-import { Order } from "../domain/order";
-import { ShippingRelease } from "../domain/shipping-release";
+import { ShippingRelease } from "../../domain/shipping-release";
 import { ShippingReleaseService } from "../services/shipping-release-service";
 
 type UseCaseDependencies = {
-  shippingRelease: ShippingRelease.Type,
-  orderId: string
+  shippingRelease: ShippingRelease.Type;
+  orderId: string;
 };
 
 export class TriggerShipment {
