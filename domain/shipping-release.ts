@@ -7,7 +7,7 @@ export namespace ShippingRelease {
   };
 
   export const create = (props: Type) => {
-    if (props.items.length === 0) throw 'DomainError - shipping release must have ate least one item'
+    if (props.items.length === 0) throw 'DomainError - shipping release must have at least one item'
 
     return props;
   };

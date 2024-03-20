@@ -1,15 +1,24 @@
-class InMemoryOrderRepository {
-  private orders: Record<string, Order> = {};
+import { OrderRepository } from "../application/services/order-repository";
+import uuid from 'uuid';
+import { Order } from "../domain/order";
 
-  getNextId() {}
+class InMemoryOrderRepository implements OrderRepository {
+  private orders: Record<string, Order.Type> = {};
 
-  async findById(orderId: string) {}
+  getNextId(): string {
+    return uuid.v4();
+  }
 
-  async store(orderEntity: Order) {}
+  async findById(orderId: string) {
+    return this.orders[orderId];
+  }
+
+  async store(orderEntity: Order.Type) {
+    this.orders[orderEntity.id] = orderEntity;
+  }
 }
 
-
-const makeInMemoryOrderRepository = () => null;
+const makeInMemoryOrderRepository = () => new InMemoryOrderRepository();
 
 export {
   makeInMemoryOrderRepository
