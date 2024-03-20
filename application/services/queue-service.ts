@@ -3,4 +3,6 @@ export interface QueueService {
     name: string,
     data: T
   }): Promise<string>;
+  addQueue(queueName: string): void;
+  addWorker(queueName: string, fn: (job: any) => Promise<any>): void;
 }
