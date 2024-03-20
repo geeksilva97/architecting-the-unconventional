@@ -1,9 +1,7 @@
-import { ShippingRelease } from "../../domain/shipping-release";
 import { ShippingReleaseService } from "../services/shipping-release-service";
 
 type UseCaseDependencies = {
-  shippingRelease: ShippingRelease.Type;
-  orderId: string;
+  shippingReleaseId: string;
 };
 
 export class TriggerShipment {
@@ -15,8 +13,9 @@ export class TriggerShipment {
     this.shippingReleaseService = shippingReleaseService;
   }
 
-  execute({
-    orderId,
-    shippingRelease
-  }: UseCaseDependencies) {}
+  async execute({
+    shippingReleaseId
+  }: UseCaseDependencies) {
+    await this.shippingReleaseService.markAsReadyShip(shippingReleaseId);
+  }
 }

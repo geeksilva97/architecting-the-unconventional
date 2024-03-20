@@ -8,7 +8,7 @@ export class BullMQQueueService {
   private queues: Record<string, Queue> = {};
   private workers: Record<string, Worker> = {};
 
-  private constructor(redisConnection: IORedis, prefix?: string) {
+  constructor(redisConnection: IORedis, prefix?: string) {
     this.redisConnection = redisConnection;
   }
 

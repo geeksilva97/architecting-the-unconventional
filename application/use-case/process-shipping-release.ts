@@ -7,16 +7,13 @@ import { ShippingReleaseService } from "../services/shipping-release-service";
 type ShippinReleaseDTO = {};
 
 export class ProcessShippingRelease {
-  private readonly queueService: QueueService;
   private readonly shippingReleaseService: ShippingReleaseService;
   private readonly orderRepository: OrderRepository;
 
   constructor(
     shippingReleasesService: ShippingReleaseService,
     orderRepository: OrderRepository,
-    queueService: QueueService
   ) {
-    this.queueService = queueService;
     this.shippingReleaseService = shippingReleasesService;
     this.orderRepository = orderRepository;
   }
@@ -35,11 +32,11 @@ export class ProcessShippingRelease {
 
     await this.orderRepository.store(order);
 
-    await this.queueService.enqueue('somequeue', {
-      name: 'trigger-shipment',
-      data: {
-        shippingReleaseId: shippingRelease.id
-      }
-    });
+    // await this.queueService.enqueue('trigger-shipment', {
+    //   name: 'trigger-shipment',
+    //   data: {
+    //     shippingReleaseId: shippingRelease.id
+    //   }
+    // });
   }
 }

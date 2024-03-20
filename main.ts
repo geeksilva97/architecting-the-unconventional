@@ -1,9 +1,15 @@
 import express from 'express';
-import { createOrderExpressHandler } from './inteface/web-arch/create-order-express-http-handler';
+import { processShippingReleaseExpressHandler } from './inteface/web-arch/process-shipping-release-express-http-handler';
+import { container } from './container';
+import { router } from './inteface/web-arch/router';
 
 const app = express();
 
-app.post('/orders', createOrderExpressHandler);
+app.use(express.json());
+
+// app.post('/api/processing/shipping-release', processShippingReleaseExpressHandler);
+
+app.use(router());
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('server is up')
