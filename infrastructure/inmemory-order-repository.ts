@@ -2,6 +2,7 @@ import { OrderRepository } from "../application/services/order-repository";
 import uuid from 'uuid';
 import { Order } from "../domain/order";
 
+// file: infrastructure/inmemory-order-repository.ts
 class InMemoryOrderRepository implements OrderRepository {
   private orders: Record<string, Order.Type> = {};
 
@@ -9,8 +10,8 @@ class InMemoryOrderRepository implements OrderRepository {
     return uuid.v4();
   }
 
-  async findById(orderId: string) {
-    return this.orders[orderId];
+  findById(orderId: string) {
+    return Promise.resolve(this.orders[orderId]);
   }
 
   async store(orderEntity: Order.Type) {
