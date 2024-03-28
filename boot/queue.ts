@@ -1,3 +1,4 @@
+import { Queue } from "bullmq";
 import { QueueService } from "../application/services/queue-service";
 import { BullMQQueueService } from "../infrastructure/bullmq-queue-service";
 import { startWorkers } from "../interface/task-runner-arch";
@@ -22,6 +23,8 @@ export const startQueues = async (queueService: BullMQQueueService) => {
   startWorkers(queueService);
 
   fetchShippingReleasesCron(queueService);
+
+  return queueService.getQueues<Queue>();
 };
 
 const fetchShippingReleasesCron = (queueService: QueueService) => {

@@ -13,6 +13,10 @@ export class BullMQQueueService implements QueueService {
     this.redisConnection = redisConnection;
   }
 
+  getQueues<Queue>(): Queue[] {
+    return Object.values(this.queues) as Queue[];
+  }
+
   async ready() {
     return await this.redisConnection.ping() === 'PONG';
   }

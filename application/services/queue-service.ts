@@ -5,4 +5,5 @@ export interface QueueService {
   }): Promise<void>;
   addQueue(queueName: string): void;
   addWorker(queueName: string, fn: (job: any) => Promise<any>): void;
+  getQueues<T>(): T[];
 }
