@@ -2,9 +2,11 @@ import { Request, Response } from 'express';
 import { container } from '../../../container';
 
 export const processShippingReleaseExpressHandler = async (req: Request, res: Response) => {
-  console.log(req.body)
+  // validation & error handling omitted
 
-  await container.processShippingReleaseUseCase.execute({});
+  const requestData = req.body;
 
-  return res.send('hello world')
+  await container.processShippingReleaseUseCase.execute(requestData);
+
+  return res.status(202);
 };

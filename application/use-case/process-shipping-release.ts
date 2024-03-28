@@ -2,7 +2,12 @@ import { Order } from "../../domain/order";
 import { ShippingRelease } from "../../domain/shipping-release";
 import { OrderRepository } from "../services/order-repository";
 
-type ShippingReleaseDTO = {};
+type ShippingReleaseDTO = {
+  id: string;
+  storeId: string;
+  status: string;
+  items: {sku: string, qty: number}[];
+};
 
 export class ProcessShippingRelease {
   private readonly orderRepository: OrderRepository;

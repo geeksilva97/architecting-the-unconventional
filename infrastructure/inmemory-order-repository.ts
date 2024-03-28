@@ -3,7 +3,7 @@ import uuid from 'uuid';
 import { Order } from "../domain/order";
 
 // file: infrastructure/inmemory-order-repository.ts
-class InMemoryOrderRepository implements OrderRepository {
+export class InMemoryOrderRepository implements OrderRepository {
   private orders: Record<string, Order.Type> = {};
 
   getNextId(): string {
@@ -18,9 +18,3 @@ class InMemoryOrderRepository implements OrderRepository {
     this.orders[orderEntity.id] = orderEntity;
   }
 }
-
-const makeInMemoryOrderRepository = () => new InMemoryOrderRepository();
-
-export {
-  makeInMemoryOrderRepository
-};

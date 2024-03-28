@@ -1,13 +1,12 @@
-import express from 'express';
-import { container } from './container';
-import { router } from './interface/web-arch/router';
+import { startQueues } from "./boot/queue";
+import { startServer } from "./boot/server";
 
-const app = express();
+const main = async () => {
+  startQueues();
+  startServer();
+};
 
-app.use(express.json());
-
-app.use(router());
-
-app.listen(process.env.PORT || 3000, () => {
-  console.log('server is up')
+main().catch(error => {
+  console.error(error);
+  process.exit(1);
 });
