@@ -13,6 +13,10 @@ export class BullMQQueueService implements QueueService {
     this.redisConnection = redisConnection;
   }
 
+  async ready() {
+    return await this.redisConnection.ping() === 'PONG';
+  }
+
   async enqueue<T>(queueName: string, jobDefinition: { name: string; data: T; }): Promise<void> {
     const queue = this.queues[queueName];
 
