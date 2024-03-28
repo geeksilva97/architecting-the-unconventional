@@ -1,8 +1,9 @@
 import { startQueues } from "./boot/queue";
 import { startServer } from "./boot/server";
+import { container } from "./container";
 
 const main = async () => {
-  startQueues();
+  await startQueues(container.queueService);
   startServer();
 };
 

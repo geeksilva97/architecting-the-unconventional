@@ -2,8 +2,9 @@ import {
   Queue, Worker, FlowProducer, JobsOptions
 } from 'bullmq';
 import IORedis from 'ioredis';
+import { QueueService } from '../application/services/queue-service';
 
-export class BullMQQueueService {
+export class BullMQQueueService implements QueueService {
   private readonly redisConnection: IORedis;
   private queues: Record<string, Queue> = {};
   private workers: Record<string, Worker> = {};
@@ -12,11 +13,11 @@ export class BullMQQueueService {
     this.redisConnection = redisConnection;
   }
 
-  async enqueue(queueName: string, jobData: { name: string, data: unknown }) {
+  async enqueue<T>(queueName: string, jobDefinition: { name: string; data: T; }): Promise<void> {
     const queue = this.queues[queueName];
 
-    await queue.add(jobData.name,
-      jobData.data
+    await queue.add(jobDefinition.name,
+      jobDefinition.data
     );
   }
 
