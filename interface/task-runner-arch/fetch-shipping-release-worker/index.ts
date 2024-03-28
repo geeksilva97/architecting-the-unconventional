@@ -6,9 +6,7 @@ import { QUEUE_NAMES } from '../../../boot/queue';
 const fetchShippingReleasesWorkerHandler = async (job: Job): Promise<unknown> => {
   // validation and error handling omitted
 
-  // await container.processShippingReleaseUseCase.execute(job.data);
-
-  console.log('Gotta list some shipping releases');
+  await container.fetchShippingReleasesUseCase.execute();
 
   return 'task finished';
 };
