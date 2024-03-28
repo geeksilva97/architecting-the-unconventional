@@ -4,9 +4,7 @@ import { container } from '../../../container';
 export const processShippingReleaseExpressHandler = async (req: Request, res: Response) => {
   // validation & error handling omitted
 
-  const requestData = req.body;
-
-  await container.processShippingReleaseUseCase.execute(requestData);
+  await container.processShippingReleaseUseCase.execute(req.body);
 
   return res.status(202);
 };
