@@ -1,5 +1,5 @@
 import { createBullBoard } from "@bull-board/api";
-import { startQueues } from "./boot/queue";
+import { initializeTaskRunnerInterface } from "./boot/queue";
 import { startServer } from "./boot/server";
 import { container } from "./container";
 import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
@@ -9,7 +9,7 @@ import {
 } from '@bull-board/express';
 
 const main = async () => {
-  const queues = await startQueues(container.queueService);
+  const queues = await initializeTaskRunnerInterface(container.queueService);
 
   startServer({
     beforeStart: async (expressApp) => {

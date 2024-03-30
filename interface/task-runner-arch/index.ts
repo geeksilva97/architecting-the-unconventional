@@ -6,3 +6,11 @@ export const startWorkers = (queueService: QueueService) => {
   shippingReleaseWorker(queueService);
   fetchShippingReleasesWorker(queueService);
 };
+
+export const startQueues = (queueNames: Record<string, string>, queueService: QueueService) => {
+  for (const queueName of Object.values(queueNames)) {
+    queueService.addQueue(queueName);
+
+    console.log(`queue ${queueName} started`)
+  }
+};

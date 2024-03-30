@@ -14,7 +14,9 @@ export class InMemoryOrderRepository implements OrderRepository {
     return Promise.resolve(this.orders[orderId]);
   }
 
-  async store(orderEntity: Order.Type) {
+  store(orderEntity: Order.Type) {
     this.orders[orderEntity.id] = orderEntity;
+
+    return Promise.resolve();
   }
 }
