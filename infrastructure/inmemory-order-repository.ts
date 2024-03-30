@@ -1,5 +1,5 @@
 import { OrderRepository } from "../application/services/order-repository";
-import uuid from 'uuid';
+import { v4 } from 'uuid';
 import { Order } from "../domain/order";
 
 // file: infrastructure/inmemory-order-repository.ts
@@ -7,7 +7,7 @@ export class InMemoryOrderRepository implements OrderRepository {
   private orders: Record<string, Order.Type> = {};
 
   getNextId(): string {
-    return uuid.v4();
+    return v4();
   }
 
   findById(orderId: string) {

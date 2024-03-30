@@ -6,12 +6,13 @@ import { makeRedisConnection } from "./shared/redis";
 
 const redisConnection = makeRedisConnection();
 const orderRepository = new InMemoryOrderRepository();
+const queueService =  new BullMQQueueService(redisConnection);
 
 const container = {
   redisConnection,
-  queueService: new BullMQQueueService(redisConnection),
+  queueService,
   processShippingReleaseUseCase: new ProcessShippingRelease(orderRepository),
-  fetchShippingReleasesUseCase: new FetchShippingReleases(orderRepository)
+  fetchShippingReleasesUseCase: new FetchShippingReleases(queueService)
 }
 
 type Container = typeof container;

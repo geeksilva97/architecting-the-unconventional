@@ -4,7 +4,7 @@ import { BullMQQueueService } from "../infrastructure/bullmq-queue-service";
 import { startQueues, startWorkers } from "../interface/task-runner-arch";
 import cron from 'node-cron';
 
-export const QUEUE_NAMES: Record<string, string> = {
+export const QUEUE_NAMES = {
   FETCH_SHIPPING_RELEASE: 'FETCH_SHIPPING_RELEASE',
   PROCESS_SHIPPING_RELEASE: 'PROCESS_SHIPPING_RELEASE'
 };
